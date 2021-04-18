@@ -24,16 +24,23 @@ const url = require('url');
 // console.log("Will read file")
 
 ////////////////////////////////
+//SERVER
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview`, 'utf-8')
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-overview`, 'utf-8')
+const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product`, 'utf-8')
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
 const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
   const pathname = req.url;
+  //Overview PAGE
   if (pathname === '/' || pathname === '/overview') {
     res.end('This is Overview');
   } else if (pathname === '/product') {
     res.end('This is the Product');
+
+    // Product page
   } else if (pathname === '/api') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(data);
